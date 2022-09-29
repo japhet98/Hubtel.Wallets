@@ -10,20 +10,21 @@
 
 using Hubtel.Wallets.Api.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hubtel.Wallets.Api.Interfaces
 {
     public interface IWalletRepo
     {
-        bool SaveChanges();
+       Task<bool> SaveChanges();
         void CreateWallet(Wallet _wallet);
         void DeleteWallet(Wallet _wallet);
 
-        Wallet GetWalletById(int _walletId);
-        bool IsWalleWithinMaxLimit(Wallet wallet);
-        bool IsWalletDuplicate(Wallet wallet);
+       Task<Wallet> GetWalletById(int _walletId);
+     bool IsWalleWithinMaxLimit(Wallet wallet);
+   bool IsWalletDuplicate(Wallet wallet);
 
-        IEnumerable<Wallet> GetAllWallets();
+        Task<IEnumerable<Wallet>> GetAllWallets();
 
     }
 }

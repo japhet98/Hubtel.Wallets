@@ -10,16 +10,19 @@
 
 using Hubtel.Wallets.Api.Interfaces;
 using Hubtel.Wallets.Api.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+
 namespace Hubtel.Wallets.Api.Data
 {
     public class WalletRepo : IWalletRepo
     {
         private readonly WalletDBContext _dbContext;
 
-        public WalletRepo(WalletDBContext context)
+        public  WalletRepo(WalletDBContext context)
         {
             _dbContext = context; 
         }
@@ -37,16 +40,15 @@ namespace Hubtel.Wallets.Api.Data
             _dbContext.Remove(_wallet);
         }
 
-        public IEnumerable<Wallet> GetAllWallets()
+        public async Task<IEnumerable<Wallet>> GetAllWallets()
         {
-            IEnumerable<Wallet> _wallets = from wallet in _dbContext.Wallets
-                                           select wallet;
+            IEnumerable<Wallet> _wallets = await _dbContext.Wallets.ToListAsync();
             return _wallets;
         }
 
-        public Wallet GetWalletById(int _walletId)
+        public async Task<Wallet> GetWalletById(int _walletId)
         {
-            Wallet _wallet = _dbContext.Wallets.FirstOrDefault(wallet => wallet.ID == _walletId);
+            Wallet _wallet =await _dbContext.Wallets.FirstOrDefaultAsync(wallet => wallet.ID == _walletId);
             return _wallet;
         }
 
@@ -62,9 +64,10 @@ namespace Hubtel.Wallets.Api.Data
             return _IsWithinLimit;
         }
 
-        public bool SaveChanges()
+        public async Task<bool> SaveChanges()
         {
-          return (_dbContext.SaveChanges()>=0);
+
+          return  (await _dbContext.SaveChangesAsync() >= 0);
         }
     }
 }

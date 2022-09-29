@@ -17,6 +17,7 @@ using Hubtel.Wallets.Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hubtel.Wallets.Api.Controllers
 {
@@ -34,21 +35,21 @@ namespace Hubtel.Wallets.Api.Controllers
         }
 
         [HttpGet]   
-        public ActionResult<IEnumerable<Wallet>> GetAllWallets()
+        public async Task<ActionResult<IEnumerable<Wallet>>> GetAllWallets()
         {
-            IEnumerable<Wallet> _wallets = _walletRepo.GetAllWallets();
+            IEnumerable<Wallet> _wallets = await _walletRepo.GetAllWallets();
             return Ok(_mapper.Map<IEnumerable<WalletReadDto>>(_wallets));
         }
 
         [HttpGet("{id}", Name = "GetWalletById")]
-        public ActionResult<Wallet> GetWalletById( int id)
+        public async Task<ActionResult<Wallet>> GetWalletById( int id)
         {
-            Wallet _wallet = _walletRepo.GetWalletById(id);
+            Wallet _wallet = await _walletRepo.GetWalletById(id);
             if (_wallet == null) return NotFound("Wallet not found");
             return Ok(_mapper.Map<WalletReadDto>(_wallet));
         }
         [HttpPost]
-        public ActionResult<WalletReadDto> CreateWallet([FromBody] WalletCreateDto wallet)
+        public async Task<ActionResult<WalletReadDto>> CreateWallet([FromBody] WalletCreateDto wallet)
         {
           
             Wallet _walletModel = _mapper.Map<Wallet>(wallet);
@@ -65,7 +66,7 @@ namespace Hubtel.Wallets.Api.Controllers
 
 
             _walletRepo.CreateWallet(_walletModel);
-            _walletRepo.SaveChanges();
+           await _walletRepo.SaveChanges();
 
             WalletReadDto _walletReadDto = _mapper.Map<WalletReadDto>(_walletModel);
             return CreatedAtRoute(nameof(GetWalletById), new { id = _walletReadDto.ID },_walletReadDto);
@@ -73,12 +74,12 @@ namespace Hubtel.Wallets.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteWallet(int id)
+        public async Task<ActionResult> DeleteWallet(int id)
         {
-            Wallet _wallet = _walletRepo.GetWalletById(id);
+            Wallet _wallet = await _walletRepo.GetWalletById(id);
             if (_wallet == null) return NotFound("Wallet not found");
             _walletRepo.DeleteWallet(_wallet);
-            _walletRepo.SaveChanges();
+          await  _walletRepo.SaveChanges();
             return NoContent();
         }
     }
