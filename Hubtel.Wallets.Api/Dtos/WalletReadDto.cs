@@ -1,4 +1,14 @@
-﻿using System;
+﻿/**
+* @author Japhet Kuntu Blankson
+* 
+* @createdOn  29 September 2022
+* 
+* @fileName - WalletReadDto.cs
+* 
+* @Copyright (c) 2022 HUBTEL
+*/
+
+using System;
 
 namespace Hubtel.Wallets.Api.Dtos
 {
