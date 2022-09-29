@@ -29,8 +29,9 @@ namespace Hubtel.Wallets.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
             // Configure the Wallet DB Context ;
-            services.AddDbContext<WalletDBContext>(options=>options.UseNpgsql(Configuration.GetConnectionString("WalletDB")) );
+            services.AddDbContext<WalletDBContext>(options => options.UseNpgsql(Configuration["WalletDB"]) );
             services.AddControllers();
             services.AddSwaggerGen(swagger =>
             {
