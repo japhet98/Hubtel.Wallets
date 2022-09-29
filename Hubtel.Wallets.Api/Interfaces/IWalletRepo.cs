@@ -15,6 +15,7 @@ namespace Hubtel.Wallets.Api.Interfaces
 {
     public interface IWalletRepo
     {
+        bool SaveChanges();
         void CreateWallet(Wallet _wallet);
         void DeleteWallet(Wallet _wallet);
 
