@@ -11,6 +11,7 @@
 using Hubtel.Wallets.Api.Interfaces;
 using Hubtel.Wallets.Api.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hubtel.Wallets.Api.Data
 {
@@ -26,7 +27,7 @@ namespace Hubtel.Wallets.Api.Data
             
         }
 
-        public IEnumerable<Wallet> GetAllWallets()
+        public Task <IEnumerable<Wallet>> GetAllWallets()
         {
             IEnumerable<Wallet> _wallets = new List<Wallet>
             {
@@ -47,12 +48,12 @@ namespace Hubtel.Wallets.Api.Data
                     WalletType = "Bank Account"
                 }
             };
-            return _wallets;
+            return Task.FromResult(_wallets);
         }
 
-        public Wallet GetWalletById(int _walletId)
+        public Task<Wallet> GetWalletById(int _walletId)
         {
-            return new Wallet
+            Wallet _task = new Wallet
             {
                 ID = 2,
                 AccountNumber = "9203423049203",
@@ -60,6 +61,7 @@ namespace Hubtel.Wallets.Api.Data
                 Owner = "0242424242",
                 WalletType = "Bank Account"
             };
+            return Task.FromResult(_task);
         }
 
         public bool IsWalletDuplicate(Wallet wallet)
@@ -72,9 +74,9 @@ namespace Hubtel.Wallets.Api.Data
             throw new System.NotImplementedException();
         }
 
-        public bool SaveChanges()
+        public Task<bool> SaveChanges()
         {
-            return true;
+            return Task.FromResult(true);
         }
     }
 }
