@@ -1,4 +1,15 @@
-﻿using System;
+﻿
+/**
+ * @author Japhet Kuntu Blankson
+ * 
+ * @createdOn  28 September 2022
+ * 
+ * @fileName - Wallet.cs
+ * 
+ * @Copyright (c) 2022 HUBTEL
+ */
+
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hubtel.Wallets.Api.Models
