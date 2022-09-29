@@ -1,4 +1,14 @@
-﻿using Hubtel.Wallets.Api.Interfaces;
+﻿/**
+* @author Japhet Kuntu Blankson
+* 
+* @createdOn  29 September 2022
+* 
+* @fileName - WalletMockRepo.cs
+* 
+* @Copyright (c) 2022 HUBTEL
+*/
+
+using Hubtel.Wallets.Api.Interfaces;
 using Hubtel.Wallets.Api.Models;
 using System.Collections.Generic;
 
@@ -50,6 +60,16 @@ namespace Hubtel.Wallets.Api.Data
                 Owner = "0242424242",
                 WalletType = "Bank Account"
             };
+        }
+
+        public bool IsWalletDuplicate(Wallet wallet)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool IsWalleWithinMaxLimit(Wallet wallet)
+        {
+            throw new System.NotImplementedException();
         }
 
         public bool SaveChanges()
