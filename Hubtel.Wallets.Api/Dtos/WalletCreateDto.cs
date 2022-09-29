@@ -1,4 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿/**
+* @author Japhet Kuntu Blankson
+* 
+* @createdOn  29 September 2022
+* 
+* @fileName - WalletCreateDto.cs
+* 
+* @Copyright (c) 2022 HUBTEL
+*/
+using System.ComponentModel.DataAnnotations;
 
 namespace Hubtel.Wallets.Api.Dtos
 {

@@ -20,6 +20,8 @@ namespace Hubtel.Wallets.Api.Interfaces
         void DeleteWallet(Wallet _wallet);
 
         Wallet GetWalletById(int _walletId);
+        bool IsWalleWithinMaxLimit(Wallet wallet);
+        bool IsWalletDuplicate(Wallet wallet);
 
         IEnumerable<Wallet> GetAllWallets();
 

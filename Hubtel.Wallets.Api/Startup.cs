@@ -48,12 +48,13 @@ namespace Hubtel.Wallets.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "Hubtel Wallet Api V1");
+                });
             }
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "Hubtel Wallet Api V1");
-            });
+           
 
             app.UseHttpsRedirection();
 
