@@ -37,6 +37,7 @@ namespace Hubtel.Wallets.Api
             {
                 swagger.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "Hubtel Wallet API", Version = "v1" });
             });
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IWalletRepo, WalletRepo>();
  
         }
