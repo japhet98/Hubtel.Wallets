@@ -58,7 +58,7 @@ namespace Hubtel.Wallets.Api.Controllers
             if (_walletModel.WalletType.ToLower() != "card" && _walletModel.WalletType.ToLower() != "momo") return BadRequest("Wallet Type should either be [Card] or [Momo]");
 
             if (_walletModel.WalletType.ToLower() == "card") _walletModel.AccountNumber = _walletModel.AccountNumber.Substring(0, 6);
-
+            if (_walletModel.WalletType.ToLower() == "momo" && (_walletModel.AccountNumber.Length > 10 || _walletModel.AccountNumber.Length < 10)) return BadRequest("MoMo Number should be 10 digits.");
             //Check if Wallet is within maximum wallet limit
             if (!_walletRepo.IsWalleWithinMaxLimit(_walletModel)) return BadRequest("An account cannot have more than 5 wallets");
 
